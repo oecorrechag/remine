@@ -29,6 +29,10 @@ jobs:
       - name: Definir variable
         run: echo "USERNAME=${{ github.actor }}" >> $GITHUB_ENV
 
+      # Instalaciones
+      - name: installs
+        run: pip install -r requirements.txt
+
       # Runs script
       - name: Correr python
         run: python load.py
