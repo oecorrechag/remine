@@ -8,6 +8,8 @@ iris = load_iris()
 df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
 df['target'] = iris.target
 
+df.to_csv('df.csv', encoding = 'utf-8-sig', index = False)
+
 # Visualiza las primeras filas del DataFrame
 print('Aca se imprime el dataframe iris:')
 print('')
