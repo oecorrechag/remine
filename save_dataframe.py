@@ -6,4 +6,4 @@ df = pd.DataFrame(data)
 
 df.to_csv('data.csv', index=False)
 df.to_parquet('data.parquet', engine='pyarrow')
-df.to_excel('data.xlsx', index=False)
+# df.to_excel('data.xlsx', index=False)
