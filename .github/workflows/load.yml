@@ -38,3 +38,9 @@ jobs:
       # Runs script
       - name: Correr python
         run: python load.py
+
+      - name: Commit and Push Changes
+        run: |
+          git add df.csv  # Replace with your chosen file format
+          git commit -m "Saved DataFrame"
+          git push
