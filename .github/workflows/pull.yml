@@ -1,0 +1,19 @@
+name: Create Pull Request
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  create_pr:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Create Pull Request
+      uses: peter-j/create-pull-request@v3
+      with:
+        token: ${{ secrets.gita }}
+        title: 'Automated Pull Request'
+        body: 'This pull request was created automatically.'
+        base: main
+        head: feature-branch

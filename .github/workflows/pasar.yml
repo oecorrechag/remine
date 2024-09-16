@@ -1,0 +1,22 @@
+name: Mi flujo de trabajo
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generar resultado
+        id: generar_resultado
+        run: echo "::set-output name=resultado::Hola, mundo!"
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Utilizar resultado
+        run: echo ${{ jobs.job1.outputs.resultado }}
+        
