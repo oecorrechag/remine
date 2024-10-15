@@ -34,6 +34,10 @@ jobs:
       - name: installs
         run: pip install -r requirements.txt
 
+      # Instalaciones 2
+      - name: install paquete
+        run: pip install git+https://"${{ secrets.paquete }}"@github.com/oecorrechag/mypackage.git
+
       # Runs script
       - name: Correr python
         run: python load.py
