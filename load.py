@@ -11,6 +11,7 @@ iris = load_iris()
 # Convierte los datos a un DataFrame de pandas
 df_new = pd.DataFrame(data=iris.data, columns=iris.feature_names)
 df_new['target'] = iris.target
+df_new = df_new.sample(frac=0.0005)
 
 print(f'shape new: {df_new.shape}')
 
