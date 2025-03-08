@@ -1,31 +1,46 @@
 import pandas as pd
 from sklearn.datasets import load_iris
-import datetime
+from datetime import datetime
+from pathlib import Path
 
-ahora = datetime.datetime.now()
-print(f'La fecha es: {ahora}')
+def load_and_prepare_iris_data():
+    """Carga el conjunto de datos Iris y lo convierte en un DataFrame."""
+    iris = load_iris()
+    df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+    df['target'] = iris.target
+    return df.sample(frac=0.0005)
 
-# Carga el conjunto de datos
-iris = load_iris()
+def load_existing_data(file_path):
+    """Carga un DataFrame existente desde un archivo CSV."""
+    return pd.read_csv(file_path, sep=',', decimal='.', header=0, encoding='utf-8')
 
-# Convierte los datos a un DataFrame de pandas
-df_new = pd.DataFrame(data=iris.data, columns=iris.feature_names)
-df_new['target'] = iris.target
-df_new = df_new.sample(frac=0.0005)
+def save_data(df, file_path):
+    """Guarda el DataFrame en un archivo CSV."""
+    df.to_csv(file_path, encoding='utf-8-sig', index=False)
 
-print(f'shape new: {df_new.shape}')
+def main():
+    # Imprime la fecha actual
+    print(f'La fecha es: {datetime.now()}')
 
-df_old = pd.read_csv('df.csv', sep = ',', decimal = '.', header = 0, encoding = 'utf-8')
+    # Carga y prepara el nuevo conjunto de datos Iris
+    df_new = load_and_prepare_iris_data()
+    print(f'shape new: {df_new.shape}')
 
-print(f'shape old: {df_old.shape}')
+    # Carga el DataFrame existente
+    file_path = Path('df.csv')
+    df_old = load_existing_data(file_path)
+    print(f'shape old: {df_old.shape}')
 
-df = pd.concat([df_old, df_new], ignore_index=True)
+    # Combina los DataFrames
+    df = pd.concat([df_old, df_new], ignore_index=True)
+    print(f'shape actual: {df.shape}')
 
-df.to_csv('df.csv', encoding = 'utf-8-sig', index = False)
+    # Guarda el DataFrame combinado
+    save_data(df, file_path)
 
-print(f'shape actual: {df.shape}')
+    # Visualiza las primeras filas del DataFrame (opcional)
+    # print('Aca se imprime el dataframe iris:')
+    # print(df.head())
 
-# Visualiza las primeras filas del DataFrame
-# print('Aca se imprime el dataframe iris:')
-# print('')
-# print(df.head())
+if __name__ == "__main__":
+    main()
