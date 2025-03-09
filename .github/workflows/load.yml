@@ -35,7 +35,7 @@ jobs:
         run: pip install git+https://"${{ secrets.paquete }}"@github.com/oecorrechag/mypackage.git
 
       # Instalaciones 2
-      - name: install paquete
+      - name: show list
         run: pip list
 
       # Runs script
@@ -53,7 +53,7 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.gita }}
 
       # Commit and save
-      - name: Commit and Push Changes 1
+      - name: Commit and Push Changes
         run: |
           git config --global user.name "${{ secrets.USER_USER }}"
           git config --global user.email "${{ secrets.EMAIL_EMAIL }}"
