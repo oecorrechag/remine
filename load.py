@@ -8,7 +8,7 @@ def load_and_prepare_iris_data():
     iris = load_iris()
     df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
     df['target'] = iris.target
-    return df.sample(frac=0.0005)
+    return df.sample(frac=0.05)
 
 def load_existing_data(file_path):
     """Carga un DataFrame existente desde un archivo CSV."""
