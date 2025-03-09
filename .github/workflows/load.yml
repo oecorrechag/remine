@@ -61,4 +61,4 @@ jobs:
           git commit -m "Saved DataFrame cleaned"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.gita }}
+          GITHUB_TOKEN: ${{ secrets.boku }}
